@@ -33,9 +33,8 @@ Prerequisite:
 comset.agent_class = org.joonseok.comset.SmartAgent
 ```
 2. Make sure that two files `H6.txt` and `W6.txt` in directory `model` exist.
-
-
-3. To run simulation, you can execute Main class with mvn as follows:
+3. Run `mvn install` or `mvn package` to build the project.
+4. To run simulation, you can execute Main class with mvn as follows:
 ```
 mvn exec:java -Dexec.mainClass="Main"
 ```
