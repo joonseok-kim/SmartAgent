@@ -46,6 +46,17 @@
             <artifactId>slf4j-log4j12</artifactId>
             <version>1.7.5</version>
         </dependency>
+        <!-- For configuration -->
+        <dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-configuration2</artifactId>
+			<version>2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>1.9.3</version>
+		</dependency>
     </dependencies>
     <build>
         <sourceDirectory>${basedir}/src</sourceDirectory>
@@ -53,5 +64,39 @@
         <testSourceDirectory>${basedir}/src/test</testSourceDirectory>
         <outputDirectory>${basedir}/target/classes</outputDirectory>
         <testOutputDirectory>${basedir}/target/test-classes</testOutputDirectory>
+        <!-- For creating executable a jar file including all dependencies -->
+        <plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>3.1.0</version>
+				<configuration>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+					<archive>
+		            <manifest>
+		              <mainClass>Main</mainClass>
+		            </manifest>
+		          </archive>
+				</configuration>
+				<executions>
+					<execution>
+						<id>make-assembly</id> <!-- this is used for inheritance merges -->
+						<phase>package</phase> <!-- bind to the packaging phase -->
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
     </build>
 </project>
